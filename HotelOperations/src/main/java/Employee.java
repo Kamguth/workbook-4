@@ -1,9 +1,9 @@
 public class Employee {
-    private int employeeId;
-    private String name;
-    private String department;
-    private double payRate;
-    private double hoursWorked;
+     int employeeId;
+     String name;
+     String department;
+     double payRate;
+     double hoursWorked;
 
     public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
         this.employeeId = employeeId;
@@ -34,8 +34,9 @@ public class Employee {
     }
 
     public double getTotalPay() {
-        return payRate * hoursWorked;
-        //needs finishing to include overtime
+        double regularPay = getRegularHours() * payRate;
+        double overtimePay = getOvertimeHours() * (payRate * 1.5);
+        return regularPay + overtimePay;
     }
 
     public double getRegularHours() {

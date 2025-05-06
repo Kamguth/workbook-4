@@ -1,25 +1,35 @@
 package com.pluralsight;
 
-
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-Room room1 = new Room(2, 150.00, false,false, true);
+        Room room = new Room(2, 150.00, false, false);
+        /*System.out.println("Room Test:");
+        System.out.println("Beds: " + room.getNumberOfBeds());
+        System.out.println("Price: $" + room.getPrice());
+        System.out.println("Occupied? " + room.isOccupied());
+        System.out.println("Dirty? " + room.isDirty());
+        System.out.println("Available? " + room.isAvailable());*/
 
-        System.out.println("Number of beds: " + room1.getNumberOfBeds());
-        System.out.println("Price per night: $" + room1.getPrice());
-        System.out.println("Is Occupied: " + room1.isOccupied());
-        System.out.println("Is Dirty: " + room1.isDirty());
-        System.out.println("Is Available: " + room1.isAvailable());
+        room.checkIn();
+        System.out.println("\nAfter check in: " + room.isAvailable());
 
-        Scanner scanner = new Scanner(System.in);
+        room.checkOut();
+        System.out.println("After check out: " + room.isAvailable());
 
-        System.out.print("Enter room type (king or double): ");
-        String roomType = scanner.nextLine();
+        room.cleanRoom();
+        System.out.println("After room clean: " + room.isAvailable());
 
-        System.out.println("Enter number of nights: ");
-        int numberOfNights = scanner.nextInt();
+
+        /*Reservation reservation = new Reservation("king", 3, true);
+        System.out.println("\nReservation Test:");
+        System.out.println("Room Type: " + reservation.getRoomType());
+        System.out.println("Nights: " + reservation.getNumberOfNights());
+        System.out.println("Weekend? " + reservation.isWeekend());
+        System.out.println("Price per Night: $" + reservation.getPrice());
+        System.out.println("Total: $" + reservation.getReservationTotal());*/
+
 
     }
 }

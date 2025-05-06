@@ -5,7 +5,7 @@ public class Reservation {
     private int numberOfNights;
     private boolean isWeekend;
 
-    public Reservation(String roomType, double price, int numberOfNights, boolean isWeekend, double reservationTotal) {
+    public Reservation(String roomType, int numberOfNights, boolean isWeekend) {
         this.roomType = roomType;
         this.numberOfNights = numberOfNights;
         this.isWeekend = isWeekend;
@@ -37,7 +37,7 @@ public class Reservation {
 
     public double getPrice() {
         double basePrice = 124.00;
-        if (roomType.equalsIgnoreCase("king")) {
+        if (roomType != null && roomType.equalsIgnoreCase("king")) {
             basePrice = 139.00;
         }
         if (isWeekend) {

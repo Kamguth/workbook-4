@@ -1,9 +1,13 @@
+package com.pluralsight;
+
+
 public class Employee {
      int employeeId;
      String name;
      String department;
      double payRate;
      double hoursWorked;
+     double startTime;
 
     public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
         this.employeeId = employeeId;
@@ -51,5 +55,15 @@ public class Employee {
         if (hoursWorked > 40) {
             return hoursWorked - 40;
         } else return 0;
+    }
+
+    public void punchIn(double time) {
+        startTime = time;
+    }
+
+    public void punchOut(double time) {
+        double workedHours = time - startTime;
+        hoursWorked += workedHours;
+
     }
 }

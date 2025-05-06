@@ -4,9 +4,9 @@ import java.util.EmptyStackException;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
-        Room room = new Room(2, 150.00, false, false);
-        /*System.out.println("Room Test:");
+    public static void main(String[] args) throws InterruptedException {
+        /*Room room = new Room(2, 150.00, false, false);
+        System.out.println("Room Test:");
         System.out.println("Beds: " + room.getNumberOfBeds());
         System.out.println("Price: $" + room.getPrice());
         System.out.println("Occupied? " + room.isOccupied());
@@ -32,9 +32,14 @@ public class App {
         System.out.println("Total: $" + reservation.getReservationTotal());*/
 
         Employee emp = new Employee(123, "Kam", "Cyber Security", 36.00, 40);
+        Employee emp2 = new Employee(321, "Jake", "Cyber Security", 36.00, 0);
 
-        emp.punchIn(10.0);
-        emp.punchOut(14.5);
+        //emp.punchIn(10.0);
+        //emp.punchOut(14.5);
+
+        emp2.punchIn();
+        Thread.sleep(65000);
+        emp2.punchOut();
 
         System.out.println("Employee ID and name: " + emp.getEmployeeId() + " " + emp.getName());
         System.out.println("Department: " + emp.getDepartment());
@@ -43,6 +48,10 @@ public class App {
         System.out.println("Regular Hours: " + emp.getRegularHours());
         System.out.println("Overtime Hours: " + emp.getOvertimeHours());
         System.out.println("Total Pay: $" + emp.getTotalPay());
+        System.out.println("Hours Worked (Jake): " + emp2.getHoursWorked());
+        System.out.println("Total Pay (Jake): $" + emp2.getTotalPay());
+
+
 
 
 

@@ -14,14 +14,14 @@ public class Reservation {
     public String getRoomType() {
         return roomType;
     }
+
     public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
 
 
-    public int getNumberOfNights() {
-        return numberOfNights;
-    }
+    public int getNumberOfNights() {return numberOfNights;}
+
     public void setNumberOfNights(int numberOfNights) {
         this.numberOfNights = numberOfNights;
     }
@@ -30,6 +30,7 @@ public class Reservation {
     public boolean isWeekend() {
         return isWeekend;
     }
+
     public void setWeekend(boolean isWeekend) {
         this.isWeekend = isWeekend;
     }

@@ -1,21 +1,17 @@
 package com.pluralsight;
 
 public class Room {
-    private int numberOfBeds;
-    private double price;
-    private boolean isOccupied;
-    private boolean isDirty;
-    private boolean isAvailable;
 
-    public Room(int numberOfBeds, double price, boolean isOccupied, boolean isDirty) {
+    private int id, numberOfBeds;
+    private double price;
+    private boolean occupied, dirty;
+
+    public Room(int id, int numberOfBeds, double price) {
+        this.id = id;
         this.numberOfBeds = numberOfBeds;
         this.price = price;
-        this.isOccupied = isOccupied;
-        this.isDirty = isDirty;
-    }
-
-    public int getNumberOfBeds() {
-        return numberOfBeds;
+        this.occupied = false;
+        this.dirty = false;
     }
 
     public double getPrice() {
@@ -23,35 +19,37 @@ public class Room {
     }
 
     public boolean isOccupied() {
-        return isOccupied;
-    }
-
-    public void setOccupied(boolean occupied) {
-        isOccupied = occupied;
+        return occupied;
     }
 
     public boolean isDirty() {
-        return isDirty;
-
+        return dirty;
     }
-    public void setDirty(boolean dirty) {
-        isDirty = dirty;
+
+    public int getNumberOfBeds() {
+        return numberOfBeds;
     }
 
     public boolean isAvailable() {
-        return !isOccupied && !isDirty;
+        return (!dirty && !occupied);
     }
 
     public void checkIn() {
-        isOccupied = true;
-        isDirty = true;
+        if (isAvailable()) {
+            this.dirty = true;
+            this.occupied = true;
+        } else {
+            System.out.println("Not Available");
+        }
     }
 
     public void checkOut() {
-        isOccupied = false;
+        this.occupied = false;
     }
 
     public void cleanRoom() {
-        isDirty = false;
+        this.dirty = false;
     }
+
+
 }

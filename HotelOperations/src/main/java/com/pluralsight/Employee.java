@@ -1,85 +1,77 @@
 package com.pluralsight;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-public class Employee {
-     int employeeId;
-     String name;
-     String department;
-     double payRate;
-     double hoursWorked;
-     double startTime;
 
-    public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
+public class Employee {
+    private int employeeId;
+    private String name, department;
+    private double payRate, hoursWorked, startTime;
+    private LocalDateTime timeStampPunchIn;
+
+    public Employee(int employeeId, String name, String department, double payRate) {
         this.employeeId = employeeId;
         this.name = name;
         this.department = department;
         this.payRate = payRate;
-        this.hoursWorked = hoursWorked;
+        this.hoursWorked = 0;
+        this.startTime = -1;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDepartment() {
-        return department;
+    public double getTotalPay() {
+        return ((getRegularHours() * this.payRate) + (getOvertimeHours() * (this.payRate * 1.5)));
     }
 
     public double getPayRate() {
         return payRate;
     }
 
-    public double getHoursWorked() {
-        return hoursWorked;
-    }
-
-    public double getTotalPay() {
-        double regularPay = getRegularHours() * payRate;
-        double overtimePay = getOvertimeHours() * (payRate * 1.5);
-        return regularPay + overtimePay;
-    }
-
     public double getRegularHours() {
-       if (hoursWorked > 40) {
-           return 40;
-       }
-       else {
-           return hoursWorked;
-       }
+//        return Math.min(this.hoursWorked, 40);
+        if (this.hoursWorked > 40) {
+            return 40;
+        } else {
+            return this.hoursWorked;
+        }
     }
+
     public double getOvertimeHours() {
-        if (hoursWorked > 40) {
-            return hoursWorked - 40;
-        } else return 0;
+//                return Math.max(this.hoursWorked-40, 0);
+        if (this.hoursWorked > 40) {
+            return this.hoursWorked-40;
+        } else {
+            return 0;
+        }
     }
 
     public void punchIn(double time) {
-        startTime = time;
+        this.startTime = time;
     }
 
     public void punchOut(double time) {
-        double workedHours = time - startTime;
-        hoursWorked += workedHours;
-
+        this.hoursWorked += time - this.startTime;
+        this.startTime = -1;
     }
 
     public void punchIn() {
-        LocalTime now = LocalTime.now();
-        startTime = now.getHour() + now.getMinute() / 60.0;
+        LocalDateTime punchIn = LocalDateTime.now();
+        this.startTime = (punchIn.getHour()) + (punchIn.getMinute() / 60);
     }
-
 
     public void punchOut() {
-        LocalTime now = LocalTime.now();
-        double endTime = now.getHour() + now.getMinute() / 60.0;
-        double workedHours = endTime - startTime;
-        hoursWorked += workedHours;
+        LocalDateTime punchOut = LocalDateTime.now();
+        double punchOutTime = (punchOut.getHour()) + (punchOut.getMinute() / 60);
+
+        this.hoursWorked += punchOutTime - this.startTime;
+        this.startTime = -1;
+    }
+
+    public void punchTimeCard(double time) {
+        //exclamation point
+        if (this.startTime == -1) {
+            this.startTime = time;
+        } else {
+            this.hoursWorked += time - this.startTime;
+            this.startTime = -1;
+        }
     }
 }
-
-
